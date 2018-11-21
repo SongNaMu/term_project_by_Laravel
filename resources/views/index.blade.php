@@ -42,7 +42,7 @@
 foreach($board as $row){?>
 <tr>
   <td><?= $row["id"] ?></td>
-  <td><a href="views?num=<?= $row["id"]?>&page="><?= $row["title"] ?></a></td>
+  <td><a href="view?num=<?= $row["id"]?>"><?= $row["title"] ?></a></td>
   <td><?= $row["member_id"] ?></td>
   <td><?= $row["regtime"] ?></td>
   <td>0</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Board;
+use App\Comment;
 class BoardController extends Controller
 {
     //
@@ -18,14 +19,23 @@ class BoardController extends Controller
     }
 
     //게시글 상세보기
-    public function viewBoard(){
-      $board = Board::find(20);
+    public function viewBoard(Request $request){
+      $num = $request->get('num');
+
+      $board = Board::find($num);
+      $comment = Comment::where('board_id', $num)->orderByRaw('if(isnull(comment_id), id, comment_id), regtime')->get();
+
+
       $member_id = $board->member_id;
       $title = $board->title;
       $content = $board->content;
       $regtime = $board->regtime;
+
+      //foreach($comment as $key => $value){
+      //  echo "$key : $value <br>";
+      //}
       return view('view')->with('member_id', $member_id)
       ->with('title', $title)->with('content', $content)
-      ->with('regtime', $regtime);
+      ->with('regtime', $regtime)->with('comment', $comment)->with('num', $board->id);
     }
 }

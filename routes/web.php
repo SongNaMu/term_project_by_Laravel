@@ -34,7 +34,8 @@ Route::get('/register', function(){
 Route::post('/register', 'MemberController@createMember');
 
 //게시글 상세보기
-Route::get('/view','BoardController@viewBoard');
+Route::get('/view/','BoardController@viewBoard');
+
 
 Route::get('/views', function () {
     return view('views');
