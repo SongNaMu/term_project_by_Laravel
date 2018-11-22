@@ -14,7 +14,7 @@ class BoardController extends Controller
         return view('index')->with('board',$board);
     }
     public static function boardPagenation(){
-        $board = Board::paginate(5);
+        $board = Board::orderby('id','desc')->paginate(5);
         return view('index')->with('board',$board);
     }
 
@@ -37,5 +37,13 @@ class BoardController extends Controller
       return view('view')->with('member_id', $member_id)
       ->with('title', $title)->with('content', $content)
       ->with('regtime', $regtime)->with('comment', $comment)->with('num', $board->id);
+    }
+    public function write(Request $request){
+      $id = session('id');
+      if(isset($id)){
+        return view('write_form');
+      }else{
+        return redirect('/board');
+      }
     }
 }

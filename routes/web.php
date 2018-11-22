@@ -36,6 +36,9 @@ Route::post('/register', 'MemberController@createMember');
 //게시글 상세보기
 Route::get('/view/','BoardController@viewBoard');
 
+//글 작성 폼
+Route::get('/write_form','BoardController@write');
+
 
 Route::get('/views', function () {
     return view('views');

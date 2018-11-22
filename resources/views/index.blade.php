@@ -51,7 +51,7 @@ foreach($board as $row){?>
 }?>
 
 </table>
-<input class="btn btn-info" type="button" value="글쓰기" onclick="location.href='write_form.php'">
+<input class="btn btn-info" type="button" value="글쓰기" onclick="location.href='write_form'">
 <div class='pagenation'>
   {{ $board->links() }}
 </div>

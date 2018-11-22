@@ -7,7 +7,8 @@ use App\Http\Controllers\BoardController;
 use App\Member;
 class MemberController extends Controller
 {
-    //
+    //redirect() -> intended('bbs');
+    // 요청 하던중 로그인으로 넘어가서 로그인 하면 아까 요청한 걸로 가고 요청한게 없으면 bbs로 보낸다.
 
     public function insertMember(){
 
@@ -60,7 +61,7 @@ class MemberController extends Controller
         $member->password = $pw;
         $member->name = $name;
         $member->save();
-        
+
         return redirect('/board');
     }
   }

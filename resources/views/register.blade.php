@@ -15,7 +15,7 @@
     <input type="text" class="form-control" id="userid" name="id">
   </div>
   <div class="form-group">
-    <label for="pw">PWD:</label>
+    <label for="pw">Password:</label>
     <input type="password" class="form-control" id="userpw" name="pw">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
