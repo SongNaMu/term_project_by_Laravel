@@ -48,3 +48,6 @@ Route::get('/mail','SMail@sendmail');
 Route::get('/views', function () {
     return view('views');
 });
+
+Route::get('login/github', 'SocialController@redirectToProvider');
+Route::get('login/github/callback', 'SocialController@handleProviderCallback');

@@ -14,9 +14,6 @@ class MemberController extends Controller
     //redirect() -> intended('bbs');
     // 요청 하던중 로그인으로 넘어가서 로그인 하면 아까 요청한 걸로 가고 요청한게 없으면 bbs로 보낸다.
 
-    public function insertMember(){
-
-    }
     public function memberList(){
 
       $list = Member::get();
@@ -38,7 +35,7 @@ class MemberController extends Controller
 
         return redirect('/board');
       }else if(isset($id) && $password == $pw && $member->acc == 0){//이메일 인증 아직 안함
-  
+
         session(['message'=>'이메일 인증을 해주세요']);
         return redirect('/');
       }else{//비밀번호 틀림

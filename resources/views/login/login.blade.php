@@ -140,6 +140,11 @@
 	<button type="submit">로그인</button>
 	<a href="/register">회원가입</a>
 	</div>
+  <div class="form-group">
+      <a class="btn btn-default btn-block" href="/login/github">
+        <strong><i class="fa fa-github icon"></i> Login with Github</strong>
+      </a>
+    </div>
   </form>
 
 </body>
