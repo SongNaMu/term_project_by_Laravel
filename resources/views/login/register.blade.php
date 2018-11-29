@@ -8,19 +8,19 @@
   @csrf
   <div class="form-group">
     <label for="usr">NAME:</label>
-    <input type="text" class="form-control" id="username" name="name">
+    <input type="text" class="form-control" id="username" name="name" required>
   </div>
   <div class="form-group">
     <label for="usr">ID:</label>
-    <input type="text" class="form-control" id="userid" name="id">
+    <input type="text" class="form-control" id="userid" name="id" required>
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="text" class="form-control" id="email" name="email">
+    <input type="text" class="form-control" id="email" name="email" required>
   </div>
   <div class="form-group">
     <label for="pw">Password:</label>
-    <input type="password" class="form-control" id="userpw" name="pw">
+    <input type="password" class="form-control" id="userpw" name="pw" required>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -14,7 +14,17 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     @yield('head')
-
+    <?php
+    $message = session('message');
+    if(isset($message)){
+    ?>
+    <script>
+      alert("<?=$message?>");
+    </script>
+    <?php
+  }
+  session()->forget('message');
+    ?>
   </head>
   <body>
     <header>

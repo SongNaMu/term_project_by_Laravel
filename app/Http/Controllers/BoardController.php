@@ -15,6 +15,7 @@ class BoardController extends Controller
     }
     public static function boardPagenation(){
         $board = Board::orderby('id','desc')->paginate(5);
+
         return view('index')->with('board',$board);
     }
 
@@ -45,7 +46,8 @@ class BoardController extends Controller
       if(isset($id)){
         return view('view.write_form');
       }else{
-        return redirect('/board');
+        $message = '로그인후 이용 가능합니다.';
+        return redirect('/board')->with('message', $message);
       }
     }
     //DB에 작성글 삽입

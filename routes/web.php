@@ -40,7 +40,10 @@ Route::get('/view/','BoardController@viewBoard');
 Route::get('/write_form','BoardController@write');
 //db글 삽입
 Route::post('/insertBoard', 'BoardController@insertBoard');
+//메일 인증 url
+Route::get('/acc/{code}', 'MemberController@checkConfirmCode');
 
+Route::get('/mail','SMail@sendmail');
 
 Route::get('/views', function () {
     return view('views');
