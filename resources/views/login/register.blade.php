@@ -22,6 +22,11 @@
     <label for="pw">Password:</label>
     <input type="password" class="form-control" id="userpw" name="pw" required>
   </div>
+  <div class="form-group">
+      <a class="btn btn-default btn-block" href="/login/github">
+        <strong><i class="fa fa-github icon"></i> Login with Github</strong>
+      </a>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>

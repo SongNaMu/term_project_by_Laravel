@@ -55,6 +55,7 @@ class MemberController extends Controller
       session()->forget('id');
       session()->forget('name');
 
+      //session()->forget('state');
       return redirect('/board');
     }
 
@@ -79,8 +80,8 @@ class MemberController extends Controller
       session(['message'=>'이메일 형식을 확인해 주세요.']);
       return redirect('/register');
     }
-
-      if(Member::where('id',$id)->value('id')){
+    $mid = Member::where('id',$id)->value('id');
+      if($mid){
         session(['message'=>'이미 있는 아이디 입니다.']);
         return redirect('/register');
       }else{
@@ -96,7 +97,7 @@ class MemberController extends Controller
                   'code' => $confirmCode];
 
         Mail::to("$email")->send(new SendMail($order));
-
+        session(['message'=>'이메일 인증을 해주세요']);
         return redirect('/board');
     }
   }

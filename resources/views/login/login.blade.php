@@ -144,7 +144,7 @@
       <a class="btn btn-default btn-block" href="/login/github">
         <strong><i class="fa fa-github icon"></i> Login with Github</strong>
       </a>
-    </div>
+  </div>
   </form>
 
 </body>
