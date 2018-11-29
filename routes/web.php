@@ -19,7 +19,7 @@ Route::get('/board', 'BoardController@boardPagenation');
 
 //로그인 화면
 Route::get('/login', function () {
-    return view('login');
+    return view('login.login');
 });
 //로그인 정보(id, pw)다 입력후 확인 눌렀을시
 Route::post('/login', 'MemberController@logintest');
@@ -28,7 +28,7 @@ Route::get('/logout', 'MemberController@logout');
 
 //회원가입 폼 요청
 Route::get('/register', function(){
-  return view('register');
+  return view('login.register');
 });
 //회원가입 처리
 Route::post('/register', 'MemberController@createMember');
@@ -38,6 +38,8 @@ Route::get('/view/','BoardController@viewBoard');
 
 //글 작성 폼
 Route::get('/write_form','BoardController@write');
+//db글 삽입
+Route::post('/insertBoard', 'BoardController@insertBoard');
 
 
 Route::get('/views', function () {

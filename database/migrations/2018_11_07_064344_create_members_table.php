@@ -17,6 +17,8 @@ class CreateMembersTable extends Migration
             $table->string('id');
             $table->string('name');
             $table->string('password');
+            $table->string('email');
+            $table->integer('acc')->default(0);
 
             $table->primary('id');
         });

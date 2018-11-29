@@ -24,15 +24,19 @@ class MemberController extends Controller
 
       $id = $request->input('id');
       $pw = $request->input('pw');
-
-      $password = Member::where('id', $id)->value('password');
-      if(isset($id) && $password == $pw){
+      $member = Member::where('id', $id)->first();
+      $password = $member->password;
+      if(isset($id) && $password == $pw && $member->acc == 1 ){
         session_start();
         session(['id' => $id]);
         session(['name' => Member::where('id', $id)->value('name')]);
 
         return redirect('/board');
-      }else{
+      }else if(isset($id) && $password == $pw && $member->acc == 0){//이메일 인증 아직 안함
+        echo " 이메일 인증을 해주세요<br>";
+        return redirect('/login');
+      }
+      else{
         echo "없는 아이디거나 틀린 비밀번호<br>";
 
         return redirect('/login');
@@ -53,6 +57,7 @@ class MemberController extends Controller
       $id = $request->input('id');
       $pw = $request->input('pw');
       $name = $request->input('name');
+      $email = $request->input('email');
 
       if(Member::where('id',$id)->value('id')){
         return redirect('/register');
@@ -60,6 +65,7 @@ class MemberController extends Controller
         $member->id = $id;
         $member->password = $pw;
         $member->name = $name;
+        $member->email = $email;
         $member->save();
 
         return redirect('/board');

@@ -60,10 +60,11 @@ function mkform(num){
         <td id="content"></td>
       </tr>
     </table>
-</div>
 
-<b>전체 댓글</b>
-<ul>
+    <p id="dummycontent"style="display:none"><?=$content?></p>
+    <b>전체 댓글</b>
+    <!-- 댓글과 대댓글 출력 및 대댓글 입력 폼 -->
+    <ul>
 <?php
   foreach($comment as $row) :?>
 <?php if($row["comment_id"]){ ?>
@@ -76,7 +77,7 @@ function mkform(num){
     <div class="hiddenform" id="<?= $row["id"]?>">
       <form class="form" action="insertRecomment" method="post">
         <div class="form-group">
-        <label for="content"><b>작성자 : <?= session("id") ?></b></label>
+        <label for="content"><b>작성자 : <?= session("name") ?></b></label>
         <textarea class="form-control" row="2" id="content" name="content"></textarea>
       <input type="hidden" name="post_num" value="<?= $row["num"] ?>">
       <input type="hidden" name="mcomment_num" value="<?= $row["id"] ?>">
@@ -85,17 +86,40 @@ function mkform(num){
         <button type="submit" class="btn btn-primary">댓글등록</button>
         </div>
     </form>
-    </div>
+  </div>
 
 <?php endforeach ?>
 </ul>
 
+<!-- 댓글 작성하는 폼 -->
+<form class="form" action="comment" method="post">
+  @csrf
+  <div class="form-group">
+  <label for="content"><b>작성자 : <?=session('name') ?></b></label>
+  <textarea class="form-control" row="2" id="content" name="content"></textarea>
+  <input type="hidden" name="post_num" value="<?= $num ?>">
+  </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-primary">댓글등록</button>
+  </div>
+</form>
+
+<input type="button" class="btn btn-primary" onclick="location.href='board'" value="목록보기">
+<?php
+  if(session('id') == $member_id){
+?>
+<input type="button" class="btn btn-success" onclick="location.href=''" value="수정">
+<input type="button" class="btn btn-danger" onclick="location.href=''" value="삭제">
+<?php
+  }
+?>
+  </div>
 <script>
 var editor = new tui.Editor.factory({
   el: document.querySelector('#content'),
   height: '1500px',
   viewer: true,
-  initialValue: `<?= $content?>`
+  initialValue: document.getElementById('dummycontent').innerHTML
 });
 </script>
 @endsection

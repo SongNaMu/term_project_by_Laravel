@@ -18,7 +18,8 @@
 <div class="container">
 <h2>새 글쓰기 폼</h2>
 <p>제목과 내용을 작성해주세요</p>
-<form action="write.php" method="post">
+<form action="insertBoard" method="post">
+  @csrf
   <div class="form-group">
     <label for="title">제목 :</label>
     <input type="text" class="form-control" id="title" name="title" >
@@ -36,7 +37,7 @@
 		<input type="hidden" id="content" name="content">
   <button type="submit" class="btn btn-primary" id="execute">Submit</button>
 </form>
- 	<input type="button" class="btn btn-primary" onclick="location.href='board.php'" value="목록보기">
+ 	<input type="button" class="btn btn-primary" onclick="location.href='board'" value="목록보기">
 
 
 <script>
@@ -47,7 +48,7 @@
     height: '300px',
 		events: {
 			change: function(){
-				document.getElementById("content").value = this.editor.getValue();
+				document.getElementById("content").value = this.editor.getMarkdown();
 			}
 		}
   });

@@ -15,7 +15,7 @@ class MembersTableSeeder extends Seeder
     public function run()
     {
         // 사용자 4명 등록
-        
+
         $id = ['song','kim','lim','lee'];
         $name = ['송주헌','김덕균','임동현','이태준'];
         $password = ['1234','1234','1234','1234'];
@@ -24,7 +24,9 @@ class MembersTableSeeder extends Seeder
           DB::table('members')->insert([
             'id' => $id[$i],
             'name' => $name[$i],
-            'password' => $password[$i]
+            'password' => $password[$i],
+            'email' => str_random(20),
+            'acc' => 1
           ]);
         }
     }

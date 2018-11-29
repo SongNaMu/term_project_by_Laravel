@@ -15,6 +15,10 @@
     <input type="text" class="form-control" id="userid" name="id">
   </div>
   <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" class="form-control" id="email" name="email">
+  </div>
+  <div class="form-group">
     <label for="pw">Password:</label>
     <input type="password" class="form-control" id="userpw" name="pw">
   </div>

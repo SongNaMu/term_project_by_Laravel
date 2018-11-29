@@ -34,16 +34,31 @@ class BoardController extends Controller
       //foreach($comment as $key => $value){
       //  echo "$key : $value <br>";
       //}
-      return view('view')->with('member_id', $member_id)
+      return view('view.view')->with('member_id', $member_id)
       ->with('title', $title)->with('content', $content)
       ->with('regtime', $regtime)->with('comment', $comment)->with('num', $board->id);
     }
+
+    //글쓰기 양식 요청
     public function write(Request $request){
       $id = session('id');
       if(isset($id)){
-        return view('write_form');
+        return view('view.write_form');
       }else{
         return redirect('/board');
       }
+    }
+    //DB에 작성글 삽입
+    public function insertBoard(Request $request){
+      $id = session('id');
+      $title = $request->title;
+      $content = $request->content;
+      Board::insert(
+        ['member_id' => "$id",
+        'title' => "$title",
+        'content' => "$content"]
+      );
+
+      return redirect('/');
     }
 }
