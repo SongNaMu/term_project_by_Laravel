@@ -21,9 +21,9 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('comment_id')->default(null)->nullable();
             $table->timestamp('regtime')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->foreign('member_id')->references('id')->on('members');
-            $table->foreign('board_id')->references('id')->on('boards');
-            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 

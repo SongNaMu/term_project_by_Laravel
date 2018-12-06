@@ -33,14 +33,14 @@ class MemberController extends Controller
         session(['id' => $id]);
         session(['name' => Member::where('id', $id)->value('name')]);
 
-        return redirect('/board');
+        return redirect('/');
       }else if(isset($id) && $password == $pw && $member->acc == 0){//이메일 인증 아직 안함
 
         session(['message'=>'이메일 인증을 해주세요']);
         return redirect('/');
       }else{//비밀번호 틀림
         session(['message'=>'비밀번호를 틀리셨습니다.']);
-        return redirect('/login');
+        return redirect()->back();
       }
     }
       else{
@@ -54,8 +54,6 @@ class MemberController extends Controller
       session_start();
       session()->forget('id');
       session()->forget('name');
-
-      //session()->forget('state');
       return redirect('/board');
     }
 

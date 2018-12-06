@@ -72,32 +72,33 @@ function mkform(num){
 <?php }else{?>
     <li class="list-group-item list-group-item-primary" onclick="mkform(<?=$row["id"]?>);">
 <?php }?>
-      <?= $row["member_id"]." : ".$row["content"]." <b>". $row["regtime"]."</b>" ?><button onclick="location.href='deleteComment.php?num=<?=$row["num"]?>'">댓글삭제</button>
+      <?= $row["member_id"]." : ".$row["content"]." <b>". $row["regtime"]."</b>" ?><button onclick="location.href='/view/comment/delete?num={{$row['id']}}'">댓글삭제</button>
     </li>
     <div class="hiddenform" id="<?= $row["id"]?>">
-      <form class="form" action="insertRecomment" method="post">
+      <form class="form" action="view/comment" method="post">
+        @csrf
         <div class="form-group">
-        <label for="content"><b>작성자 : <?= session("name") ?></b></label>
-        <textarea class="form-control" row="2" id="content" name="content"></textarea>
-      <input type="hidden" name="post_num" value="<?= $row["num"] ?>">
-      <input type="hidden" name="mcomment_num" value="<?= $row["id"] ?>">
+          <label for="content"><b>작성자 : <?= session("name") ?></b></label>
+          <textarea class="form-control" row="2" id="content" name="content"></textarea>
+          <input type="hidden" name="board_id" value="<?= $num ?>">
+          <input type="hidden" name="comment_id" value="<?= $row["id"] ?>">
         </div>
         <div class="form-group">
-        <button type="submit" class="btn btn-primary">댓글등록</button>
+          <button type="submit" class="btn btn-primary">댓글등록</button>
         </div>
-    </form>
-  </div>
+      </form>
+    </div>
 
 <?php endforeach ?>
 </ul>
 
 <!-- 댓글 작성하는 폼 -->
-<form class="form" action="comment" method="post">
+<form class="form" action="view/comment" method="post">
   @csrf
   <div class="form-group">
   <label for="content"><b>작성자 : <?=session('name') ?></b></label>
   <textarea class="form-control" row="2" id="content" name="content"></textarea>
-  <input type="hidden" name="post_num" value="<?= $num ?>">
+  <input type="hidden" name="board_id" value="<?= $num ?>">
   </div>
   <div class="form-group">
   <button type="submit" class="btn btn-primary">댓글등록</button>
@@ -108,8 +109,8 @@ function mkform(num){
 <?php
   if(session('id') == $member_id){
 ?>
-<input type="button" class="btn btn-success" onclick="location.href=''" value="수정">
-<input type="button" class="btn btn-danger" onclick="location.href=''" value="삭제">
+<input type="button" class="btn btn-success" onclick="location.href='/view/modify?num={{$num}}'" value="수정">
+<input type="button" class="btn btn-danger" onclick="location.href='/view/delete?num={{$num}}'" value="삭제">
 <?php
   }
 ?>
@@ -121,5 +122,12 @@ var editor = new tui.Editor.factory({
   viewer: true,
   initialValue: document.getElementById('dummycontent').innerHTML
 });
+
+function deleteComment(){
+  alert("댓글을 삭제하시게습니까?");
+}
+function deleteBoard(){
+  alert("게시글을 삭제 하시겠습니까?");
+}
 </script>
 @endsection

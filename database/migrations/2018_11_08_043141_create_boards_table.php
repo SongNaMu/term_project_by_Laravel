@@ -21,7 +21,7 @@ class CreateBoardsTable extends Migration
 						$table->timestamp('regtime')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('member_id')->references('id')->on('members');
-            
+
         });
     }
 

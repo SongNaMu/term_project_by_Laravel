@@ -33,21 +33,28 @@ Route::get('/register', function(){
 //회원가입 처리
 Route::post('/register', 'MemberController@createMember');
 
+//메일 인증 url
+Route::get('/acc/{code}', 'MemberController@checkConfirmCode');
+Route::get('/mail','SMail@sendmail');
+
+Route::get('login/github', 'SocialController@redirectToProvider');
+Route::get('login/github/callback', 'SocialController@handleProviderCallback');
+
+
 //게시글 상세보기
 Route::get('/view/','BoardController@viewBoard');
-
 //글 작성 폼
 Route::get('/write_form','BoardController@write');
 //db글 삽입
 Route::post('/insertBoard', 'BoardController@insertBoard');
-//메일 인증 url
-Route::get('/acc/{code}', 'MemberController@checkConfirmCode');
+//글삭제 요청
+Route::get('/view/delete','BoardController@deleteBoard');
+//게시글 수정 폼 요청
+Route::get('/view/modify', 'BoardController@modifyRequest');
+//게시글 수정 요청
+Route::post('/view/modify', 'BoardController@modify');
 
-Route::get('/mail','SMail@sendmail');
-
-Route::get('/views', function () {
-    return view('views');
-});
-
-Route::get('login/github', 'SocialController@redirectToProvider');
-Route::get('login/github/callback', 'SocialController@handleProviderCallback');
+//댓글 입력
+Route::post('/view/comment', 'CommentController@insertComment');
+//댓글 삭제
+Route::get('/view/comment/delete', 'CommentController@deleteComment');

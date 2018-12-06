@@ -17,8 +17,8 @@ class CreateHitsTable extends Migration
             $table->string('member_id');
             $table->unsignedInteger('board_id');
 
-            $table->foreign('member_id')->references('id')->on('members');
-            $table->foreign('board_id')->references('id')->on('boards');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
         });
     }
 

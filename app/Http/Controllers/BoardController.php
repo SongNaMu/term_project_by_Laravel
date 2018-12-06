@@ -63,4 +63,49 @@ class BoardController extends Controller
 
       return redirect('/');
     }
+
+    //게시글 수정 폼 요청
+    public function modifyRequest(Request $request){
+      $num = $request->num;
+      $board = Board::where('id', "$num")->first();
+      $id = session('id');
+      //잘못된 게시글 번호(없는 게시글 번호)
+
+      //해달 게시글의 작성자가 아니경우
+      if($id != $board['member_id']){
+          session(['message' => '게시글의 작성자가 아닙니다.']);
+          return redirect()->back();
+      }else{
+          return view("view.modify")->with('board', $board);
+      }
+    }
+    //DB에서 게시글 수정
+    public function modify(Request $request){
+      $member_id = session('id');
+      $board = Board::where('id', "$request->id")->first();
+      if($member_id == $board['member_id']){
+        $board['title'] = $request->title;
+        $board['content'] = $request->content;
+        $board->save();
+        return redirect("/view?num=$request->id");
+      }else{
+        session(['message' => '잘못된 요청입니다.']);
+        return redirect()->back();
+      }
+    }
+
+    //게시글 삭제 요청
+    public function deleteBoard(Request $request){
+      $member_id = session('id');
+      $board = Board::where('id', "$request->num")->first();
+
+      if($member_id == $board['member_id']){
+        $board->delete();
+      }else{
+          session(['message' => '권한이 없습니다.']);
+      }
+      return redirect('/');
+    }
+
+
 }

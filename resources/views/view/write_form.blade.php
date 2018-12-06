@@ -22,7 +22,7 @@
   @csrf
   <div class="form-group">
     <label for="title">제목 :</label>
-    <input type="text" class="form-control" id="title" name="title" >
+    <input type="text" class="form-control" id="title" name="title" required>
   </div>
   	<div class="form-group">
    	 <!-- 세션에서 사용자의 name을 받아온다. -->
