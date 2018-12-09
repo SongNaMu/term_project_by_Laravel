@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Board;
 use App\Comment;
+use App\Like;
+use App\Hit;
+
 class BoardController extends Controller
 {
     //
 
-    public function boardList(){
-        $board = Board::all();
-        return view('index')->with('board',$board);
-    }
     public static function boardPagenation(){
         $board = Board::orderby('id','desc')->paginate(5);
 
@@ -22,22 +21,30 @@ class BoardController extends Controller
     //게시글 상세보기
     public function viewBoard(Request $request){
       $num = $request->get('num');
-
+      $id = session('id');
       $board = Board::find($num);
       $comment = Comment::where('board_id', $num)->orderByRaw('if(isnull(comment_id), id, comment_id), regtime')->get();
-
+      $like = Like::where("member_id", "$id")->where('board_id', $num)->first();
 
       $member_id = $board->member_id;
       $title = $board->title;
       $content = $board->content;
       $regtime = $board->regtime;
+      $hit = $this->countHit($board->id, $id);
 
+      if($like){
+        $like = 0;
+      }else{
+        $like = 1;
+      }
       //foreach($comment as $key => $value){
       //  echo "$key : $value <br>";
       //}
       return view('view.view')->with('member_id', $member_id)
       ->with('title', $title)->with('content', $content)
-      ->with('regtime', $regtime)->with('comment', $comment)->with('num', $board->id);
+      ->with('regtime', $regtime)->with('comment', $comment)
+      ->with('num', $board->id)->with('like',$like)
+      ->with('hit', $hit);
     }
 
     //글쓰기 양식 요청
@@ -106,6 +113,25 @@ class BoardController extends Controller
       }
       return redirect('/');
     }
+    //조회수 계산
+    public function countHit($board_id, $member_id){
+      $hit = new Hit;
+
+      $check = $hit->where('board_id', $board_id)->where('member_id', $member_id)->first();
+      if($check || !session('id')){
+
+        return $hit->where('board_id', $board_id)->count();
+      }else{
+
+        Hit::insert([
+          'member_id' => "$member_id",
+          'board_id' => "$board_id"
+        ]);
+        return $hit->where('board_id', $board_id)->count();
+      }
+    }
+
+
 
 
 }

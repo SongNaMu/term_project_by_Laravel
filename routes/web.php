@@ -12,8 +12,6 @@
 */
 
 Route::redirect('/', '/board');
-Route::get('/memberList', 'MemberController@memberList');
-
 //Route::get('/board', 'BoardController@boardList');
 Route::get('/board', 'BoardController@boardPagenation');
 
@@ -53,8 +51,12 @@ Route::get('/view/delete','BoardController@deleteBoard');
 Route::get('/view/modify', 'BoardController@modifyRequest');
 //게시글 수정 요청
 Route::post('/view/modify', 'BoardController@modify');
+//즐겨찾기
+Route::get('/view/like', 'LikeController@boardLike');
 
 //댓글 입력
 Route::post('/view/comment', 'CommentController@insertComment');
 //댓글 삭제
 Route::get('/view/comment/delete', 'CommentController@deleteComment');
+
+Route::get('/mypage', 'MyPageController@show');

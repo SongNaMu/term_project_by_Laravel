@@ -19,4 +19,8 @@ class Board extends Model
     public function comment(){
       return $this->hasMany('App\Comment');
     }
+
+    public function hit(){
+      return $this->hasMany('App\Hit');
+    }
 }

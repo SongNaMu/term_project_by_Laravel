@@ -33,12 +33,13 @@
       ?>
 
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-            <h5 class="my-0 mr-md-auto font-weight-normal"><a style="text-decoration:none" href="/board">Song's Board</a></h5>
+            <h5 class="my-0 mr-md-auto font-weight-normal"><a style="text-decoration:none" href="/board">Coding Board</a></h5>
             <nav class="my-2 my-md-0 mr-md-3">
               <!--<a class="p-2 text-dark" href="#">Features</a>
               <a class="p-2 text-dark" href="#">Enterprise</a>
               <a class="p-2 text-dark" href="#">Support</a> -->
-              <a class="p-2 text-dark" href="#">MyPage</a>
+              <a class="p-2 text-dark" href="">Notice</a>
+              <a class="p-2 text-dark" href="/mypage">MyPage</a>
             </nav>
       <?php if(isset($id)){ ?>
             <a class="btn btn-lutline-primary" href="/logout">Logout</a>

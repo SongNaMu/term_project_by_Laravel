@@ -35,9 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'github' => [
-    'client_id' => '2f20d93236b3abfab23b',         // Your GitHub Client ID
-    'client_secret' => 'c69e17189f794b7869e93c4b383c8c8cadf16e36', // Your GitHub Client Secret
-    'redirect' => 'http://172.26.1.162/login/github/callback',
+    'client_id' => 'd7ae4df7416dc99b4e59',         // Your GitHub Client ID
+    'client_secret' => 'b99041e5d847041456b04f655ad897a19ca13e5a', // Your GitHub Client Secret
+    'redirect' => 'http://192.168.0.115/login/github/callback',
     ],
 
 ];

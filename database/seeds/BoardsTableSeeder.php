@@ -15,7 +15,7 @@ class BoardsTableSeeder extends Seeder
 
         $member_id = ['song', 'kim','lim', 'lee'];
 
-        for($i = 0; $i < 100; $i++ ){
+        for($i = 0; $i < 50; $i++ ){
           DB::table('boards')->insert([
             'member_id' => $member_id[rand(0,3)],
             'title' => str_random(7),

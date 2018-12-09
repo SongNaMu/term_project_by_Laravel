@@ -56,7 +56,8 @@ class MemberController extends Controller
       session()->forget('name');
       return redirect('/board');
     }
-
+    
+    //회원가입
     public function createMember(Request $request){
       $member = new Member;
 

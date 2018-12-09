@@ -21,7 +21,7 @@ class CommentsTableSeeder extends Seeder
           for($i = 0; $i < 10; $i++ ){
             DB::table('comments')->insert([
               'member_id' => $id[rand(0,3)],
-              'board_id' => $j*2,
+              'board_id' => $j,
               'content' => str_random(20)
             ]);
           }
@@ -30,9 +30,9 @@ class CommentsTableSeeder extends Seeder
           for($i = 0; $i < 10; $i++ ){
             DB::table('comments')->insert([
               'member_id' => $id[rand(0,3)],
-              'board_id' => $j*2,
+              'board_id' => $j,
               'content' => str_random(20),
-              'comment_id' => rand($j*2*5-9, $j*5*2 )
+              'comment_id' => rand($j*10-9, $j*10 )
             ]);
           }
         }

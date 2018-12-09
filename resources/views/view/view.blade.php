@@ -36,7 +36,6 @@ function mkform(num){
 </script>
 @endsection
 @section('content')
-  <h1>게시글 상세보기</h1>
   <div class='container'>
     <table class="table">
       <tr>
@@ -53,7 +52,7 @@ function mkform(num){
       </tr>
       <tr>
         <th>조회수</th>
-        <td></td>
+        <td>{{$hit}}</td>
       </tr>
       <tr>
         <th>내용</th>
@@ -106,6 +105,18 @@ function mkform(num){
 </form>
 
 <input type="button" class="btn btn-primary" onclick="location.href='board'" value="목록보기">
+<?php
+if($like == 0){
+?>
+  <input type="button" class="btn btn-danger" onclick="location.href='/view/like?num={{$num}}'" value="즐겨찾기 삭제">
+<?php
+  }else{
+?>
+  <input type="button" class="btn btn-success" onclick="location.href='/view/like?num={{$num}}'" value="즐겨찾기">
+<?php
+}
+?>
+
 <?php
   if(session('id') == $member_id){
 ?>

@@ -124,6 +124,17 @@
       }
   }
   </style>
+  <?php
+  $message = session('message');
+  if(isset($message)){
+  ?>
+  <script>
+    alert("<?=$message?>");
+  </script>
+  <?php
+}
+session()->forget('message');
+  ?>
 </head>
 <body>
   <h2>로그인</h2>
