@@ -48,7 +48,7 @@
     height: '300px',
 		events: {
 			change: function(){
-				document.getElementById("content").value = this.editor.getMarkdown();
+				document.getElementById("content").value = this.editor.getValue();
 			}
 		}
   });

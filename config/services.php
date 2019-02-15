@@ -37,7 +37,7 @@ return [
     'github' => [
     'client_id' => 'd7ae4df7416dc99b4e59',         // Your GitHub Client ID
     'client_secret' => 'b99041e5d847041456b04f655ad897a19ca13e5a', // Your GitHub Client Secret
-    'redirect' => 'http://192.168.0.115/login/github/callback',
+    'redirect' => 'http://172.26.4.27/login/github/callback',
     ],
 
 ];
